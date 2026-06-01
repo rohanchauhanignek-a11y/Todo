@@ -39,7 +39,7 @@ function Header() {
         <SearchBar onSearch={handleSearch} />
       </div>
       <div className="buttons w-40" >
-        <Button title={value?"Task List":"+ New task"} onClick={() => {Navigate(value?`/`:'/formpage');setValue(!value)}} />
+        <Button title={value?"Task List":"+ New task"} onClick={() => {Navigate(value?`/home`:'/formpage');setValue(!value)}} />
       </div>
     </div>
   );
