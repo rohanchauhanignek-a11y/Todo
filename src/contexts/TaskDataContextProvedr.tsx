@@ -32,6 +32,7 @@ const [debouncedSearch, setDebouncedSearch] = useState("");
 
   useEffect(() => { fetchData(); }, [fetchData]);
 
+
   return (
     <TaskDataContext.Provider value={{
       allData,
