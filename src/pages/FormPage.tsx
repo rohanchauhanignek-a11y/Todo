@@ -14,7 +14,7 @@ const {value,setValue}:any = useContext(UIContext);
   } = useForm();
   const onSubmit = async (data: object) => {
   await addTask({...data, taskStatus: false});
-  Navigate('/home');
+  Navigate('/');
   setValue(false);
 };
 
