@@ -8,14 +8,14 @@ function TaskTable({ search }: any) {
   const { filteredData, setFilteredData }: any = useContext(TaskDataContext);
   const { filter }: any = useContext(UIContext);
 
-  let url = import.meta.env.VITE_TASK_URL;
+  let url = `https://6a1d3208bcc4f20d5ca41ed3.mockapi.io/tasks/tasks`
   if (filter.item !== "All") {
     url += `?taskStatus=${filter.value}`;
   }
   if (search) {
     url += filter.item !== "All"
-      ? `&q=${search}`
-      : `?q=${search}`;
+      ? `&search=${search}`
+      : `?search=${search}`;
   }
   const fetchData = useCallback(async () => {const result = await fetchTasks(url);
     setFilteredData(result);}, [url, filter, search])

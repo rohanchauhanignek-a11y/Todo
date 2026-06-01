@@ -13,6 +13,7 @@ async function taskUpdate(id: number, taskStatus: boolean) {
       {
         taskStatus: !taskStatus,
       }
+      
     );
   
 

@@ -8,15 +8,17 @@ function TaskDataProvider({ children }: { children: React.ReactNode }) {
   const [filteredData, setFilteredData] = useState([]);
   const url = import.meta.env.VITE_TASK_URL;
 
-  const fetchData = useCallback(async () => {
-    try {
-      const response = await axios.get(url);
-      setAllData(response.data);       
-      setFilteredData(response.data);  
-    } catch (error) {
-      console.log(error);
-    }
-  }, [url]);
+ const fetchData = useCallback(async () => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    setAllData(data);
+    setFilteredData(data);
+  } catch (error) {
+    console.log(error);
+  }
+}, [url]);
 
   const all       = useMemo(() => allData.length, [allData]);
   const completed = useMemo(() => allData.filter((t: any) => t.taskStatus).length, [allData]);

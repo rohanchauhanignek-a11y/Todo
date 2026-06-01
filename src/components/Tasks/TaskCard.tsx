@@ -11,7 +11,7 @@ const TaskCard = React.memo(function TaskCard({ task }: any) {
   // }
   
   const handleDelete = (id: number) => {
-    fetch(`${url}/${id}`, {
+    fetch(`${url}/60`, {
       method: "DELETE",
     }).catch((err) => console.error("Error deleting data:", err));
   };
