@@ -7,8 +7,8 @@ import UIContext from "../../contexts/uiContext";
 function TaskTable({ search }: any) {
   const { filteredData, setFilteredData }: any = useContext(TaskDataContext);
   const { filter }: any = useContext(UIContext);
-
-  let url = `https://6a1d3208bcc4f20d5ca41ed3.mockapi.io/tasks/tasks`
+  let url = import.meta.env.VITE_TASK_URL;
+  
   if (filter.item !== "All") {
     url += `?taskStatus=${filter.value}`;
   }

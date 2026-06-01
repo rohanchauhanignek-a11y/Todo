@@ -4,9 +4,11 @@ import addTask from "../utils/addTask";
 import { useNavigate } from "react-router-dom";
 import UIContext from "../contexts/uiContext";
 import { useContext } from "react";
+import TaskDataContext from "../contexts/TaskDataContext";
 function FormPage() {
 const Navigate = useNavigate();
 const {value,setValue}:any = useContext(UIContext);
+const {fetchData}:any = useContext(TaskDataContext);
   const {
     register,
     handleSubmit,
@@ -14,6 +16,7 @@ const {value,setValue}:any = useContext(UIContext);
   } = useForm();
   const onSubmit = async (data: object) => {
   await addTask({...data, taskStatus: false});
+  await fetchData();
   Navigate('/');
   setValue(false);
 };
