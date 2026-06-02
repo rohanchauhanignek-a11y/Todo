@@ -18,7 +18,7 @@ const {fetchData}:any = useContext(TaskDataContext);
   await addTask({...data, taskStatus: false});
   await fetchData();
   Navigate('/');
-  setValue(false);
+  setValue(true);
 };
 
   return (
