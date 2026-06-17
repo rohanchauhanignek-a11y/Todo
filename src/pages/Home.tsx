@@ -1,28 +1,32 @@
-// Main.tsx
-import { useState, useCallback, lazy, Suspense } from "react";
-import TaskOverView from "../components/Tasks/TaskOverview";
-import  Search from "../components/Tasks/Search"
-import ShimmerTaskTable from "../components/UI/ShimmerTaskTable";
-import { useContext } from "react";
-import TaskDataContext from "../contexts/TaskDataContext";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { fetchTasks, markAsCompleted } from "../utils/taskSlice";
+import { useDispatch } from "react-redux";
+import store from "../utils/store";
+import PendingTable from "../components/Tasks/PendingTable";
+import CompletedTask from "../components/Tasks/CompletedTask"
+type AppDispatch = typeof store.dispatch;
 
-const TaskTable = lazy(() => import("../components/Tasks/TaskTable"));
 
 function Main() {
-  const { debouncedSearch, setDebouncedSearch }:any = useContext(TaskDataContext);
+  const dispatch = useDispatch<AppDispatch>();
+  const { pending, completed, status } = useSelector((state:any) => state.todos);
 
-  
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
+
+  if (status === "loading") return <p className="text-white p-4">Loading...</p>;
+  if (status === "error") return <p className="text-red-500 p-4">Something went wrong!</p>;
 
   return (
-    <>
-      <TaskOverView />
+    <div className="flex gap-6 p-6">
       
-      <div className="mt-6 p-4">
-        <Suspense fallback={<ShimmerTaskTable />}>
-          <TaskTable search={debouncedSearch} />
-        </Suspense>
-      </div>
-    </>
+      <CompletedTask/>
+      <PendingTable/>
+
+    </div>
   );
 }
+
 export default Main;
