@@ -24,7 +24,7 @@ function SearchInput({ onSearch }: Props) {
             type="search"
             id="search"
             placeholder="Search..."
-            className="text-sm text-slate-900 dark:text-slate-50 w-full outline-non"
+            className="text-sm text-slate-900 dark:text-slate-50 w-full outline-none"
             {...register("search")}
           />
         </div>
