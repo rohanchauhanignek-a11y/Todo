@@ -2,9 +2,10 @@ import { createBrowserRouter,RouterProvider } from "react-router-dom"
 import Layout from "./layouts/Layout"
 import FormPage from "./pages/FormPage"
 import { lazy ,Suspense} from "react"
-import MainShimmer from "./components/UI/MainShimmer"
+import TaskShimmer from "./components/UI/ShimmerTaskTable"
+
 import ErrorFallback from "./components/UI/ErrorFallBack";
-const Main =lazy(() => import("./pages/Home"))
+import Main from "./pages/Home"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,9 +15,11 @@ const router = createBrowserRouter([
         index: true,
         path: "/",
         element: (
-          <Suspense fallback={<MainShimmer />}>
+          <Suspense fallback={<TaskShimmer/>}>
             <Main />
           </Suspense>
+            
+        
         ),
       },
       {

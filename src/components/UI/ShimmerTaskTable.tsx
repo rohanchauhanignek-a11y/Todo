@@ -1,17 +1,36 @@
-function ShimmerTaskTable() {
-    return (
-      <div className="flex flex-col items-center gap-4 py-6">
-        {[1, 2, 3, 4, 5, 6].map((task) => (
+function TaskShimmer() {
+  return (
+    <div className="w-full">
+      <h2 className="text-xl font-bold mb-4">
+        ✅ Completed (Loading...)
+      </h2>
+
+      <div className="overflow-hidden rounded-md border border-gray-700">
+        {/* Header */}
+        <div className="grid grid-cols-3 bg-gray-800 p-4 font-semibold">
+          <div>Title</div>
+          <div>Description</div>
+          <div>Action</div>
+        </div>
+
+        {[...Array(8)].map((_, index) => (
           <div
-            key={task}
-            className="w-[50%] rounded-xl border border-neutral-700 bg-neutral-900 p-4"
+            key={index}
+            className="grid grid-cols-3 p-4 border-t border-gray-700"
           >
-            <div className="h-5 w-32 bg-neutral-700 rounded mb-3"></div>
-            <div className="h-4 w-3/4 bg-neutral-700 rounded"></div>
+            <div className="h-4 w-24 bg-gray-700 rounded animate-pulse"></div>
+
+            <div className="h-4 w-40 bg-gray-700 rounded animate-pulse"></div>
+
+            <div className="flex gap-3">
+              <div className="h-8 w-28 bg-gray-700 rounded animate-pulse"></div>
+              <div className="h-8 w-8 bg-gray-700 rounded animate-pulse"></div>
+            </div>
           </div>
         ))}
       </div>
-    );
-  }
-  
-  export default ShimmerTaskTable;
+    </div>
+  );
+}
+
+export default TaskShimmer;
